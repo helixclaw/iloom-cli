@@ -454,7 +454,7 @@ export const IloomSettingsSchema = z.object({
 				.describe(
 					'Auto-commit and push after code review in draft PR mode. Defaults to true when mode is github-draft-pr.'
 				),
-			prTitlePrefix: z.boolean().default(true).optional().describe('Prefix PR titles with the issue number (e.g., "QLH-123: Title"). Default: true'),
+			prTitlePrefix: z.boolean().default(false).optional().describe('Prefix PR titles with the issue number (e.g., "QLH-123: Title"). Default: false'),
 		})
 		.optional()
 		.describe('Merge behavior configuration: local (merge locally), github-pr (create PR), github-draft-pr (create draft PR at start, mark ready on finish), or bitbucket-pr (create BitBucket PR)'),
@@ -849,7 +849,7 @@ export function redactSensitiveFields(obj: unknown): unknown {
 	if (typeof obj !== 'object') return obj
 	if (Array.isArray(obj)) return obj.map(redactSensitiveFields)
 
-	const sensitiveKeys = ['apitoken', 'token', 'secret', 'password']
+	const sensitiveKeys = ['apitoken', 'token', 'secret', 'password', 'credential']
 	const result: Record<string, unknown> = {}
 	for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
 		const lowerKey = key.toLowerCase()
