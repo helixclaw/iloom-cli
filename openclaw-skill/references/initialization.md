@@ -56,11 +56,16 @@ This file contains per-developer preferences that should NOT be committed:
 {
   "workflows": {
     "issue": {
-      "permissionMode": "acceptEdits"
+      "permissionMode": "acceptEdits",
+      "startTerminal": false,
+      "startIde": false
     }
   }
 }
 ```
+
+> **Why `startTerminal: false` and `startIde: false`?**
+> These prevent iloom from opening terminal windows and VS Code/IDE when creating looms. For AI agents operating autonomously, launching GUI applications is disruptive and unnecessary. Setting these in `settings.local.json` means you don't need to pass `--no-code` or `--no-terminal` on every `il start` command. The CLI flags (`--no-code`, `--no-terminal`) still work as a safety net — keep them in your command patterns as a fallback in case settings are missing or overridden.
 
 ### 4. Configure GitHub Remote (Fork Workflows)
 
