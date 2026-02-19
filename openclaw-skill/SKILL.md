@@ -33,6 +33,21 @@ mkdir -p .iloom
 echo '{"mainBranch": "main"}' > .iloom/settings.json
 ```
 
+Also create `.iloom/settings.local.json` with AI-agent-friendly defaults to prevent iloom from launching terminal windows and IDE on loom creation:
+
+```json
+{
+  "workflows": {
+    "issue": {
+      "startTerminal": false,
+      "startIde": false
+    }
+  }
+}
+```
+
+These settings eliminate the need for `--no-code`/`--no-terminal` flags on every command, though the flags are still passed as a safety net in the patterns below.
+
 See `{baseDir}/references/initialization.md` for the complete settings schema, all configuration options, and example configurations.
 
 **Alternative: Interactive wizard (for humans at a terminal)**
